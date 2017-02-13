@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	
+	<package name="manageUser-default" extends="netctoss-default" namespace="/manageUser">
+		<default-action-ref name="validateCodeAction" ></default-action-ref>
+		<action name="manageUserAction" class="manageUserAction">
+			<result name="success" type="dispatcher">
+				/WEB-INF/jsp/user/index.jsp
+			</result>	
+			<result name="update_success" type="dispatcher">
+				/WEB-INF/jsp/user/index.jsp
+			</result>
+			<result name="update_failed" type="dispatcher">
+				/WEB-INF/jsp/user/acctadd.jsp
+			</result>
+			<result name="acct_add" type="dispatcher">
+				/WEB-INF/jsp/user/acctadd.jsp
+			</result>
+			<result name="acct_browse" type="dispatcher">
+				/WEB-INF/jsp/user/acctbrowse.jsp
+			</result>
+			<result name="update_acct" type="dispatcher">
+				/WEB-INF/jsp/user/acctupdate.jsp
+			</result>
+			<result name="acctbr_for_upd" type="dispatcher">
+				/WEB-INF/jsp/user/acctbrforupd.jsp
+			</result>
+			<result name="acctbr_for_del" type="dispatcher">
+				/WEB-INF/jsp/user/acctbrfordel.jsp
+			</result>
+		
+			<result name="qurery_buss" type="dispatcher">
+				/WEB-INF/jsp/user/bussbrowse.jsp
+			</result>
+			<result name="buss_add" type="dispatcher">
+				/WEB-INF/jsp/user/bussadd.jsp
+			</result>			
+			<result name="buss_for_del" type="dispatcher">
+				/WEB-INF/jsp/user/bussbrfordel.jsp
+			</result>
+			
+			
+			<result name="buss_for_up" type="dispatcher">
+				/WEB-INF/jsp/user/bussbrforupd.jsp
+			</result>
+			<result name="buss_to_up" type="dispatcher">
+				/WEB-INF/jsp/user/bussupdate.jsp
+			</result>
+			
+			
+			
+		</action>
+		<action name="validateCodeAction" class="validateCodeAction">
+			<result name="login" type="stream">
+				<param name="inputName">is</param>
+				<param name="contentType">image/jpeg</param>
+			</result>
+		</action>
+	</package>
+	
+</struts>

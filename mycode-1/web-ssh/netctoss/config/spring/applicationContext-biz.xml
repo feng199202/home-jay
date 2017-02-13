@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/aop 
+			http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx 
+			http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<!-- 用户业务层 -->
+	<bean id="userServImpl" class="com.tarena.netctoss.biz.impl.UserServImpl">
+		<!--使用dao 中的userDaoImpl的bean -->
+		<property name="iuserDao" ref="userDaoImpl"></property>
+	</bean>
+	
+	<!-- 管理员业务层 -->
+	<bean id="adminServImpl" class="com.tarena.netctoss.biz.impl.AdminServImpl">
+		<!--使用dao 中的adminDaoImpl的bean -->
+		<property name="iadminDao" ref="adminDaoImpl"></property>
+	</bean>
+	
+	<!-- 信息采集记录业务层 -->
+	<bean id="detailServImpl" class="com.tarena.netctoss.biz.impl.DetailServImpl">
+		<property name="idetailDao" ref="detailDaoImpl"></property>
+		
+	</bean>
+	<!-- 资费业务层 -->
+	<bean id="pricingServImpl" class="com.tarena.netctoss.biz.impl.PricingServImpl">
+		<property name="ipricingDao" ref="pricingDaoImpl"></property>
+	</bean>
+	
+	<!-- 用户服务业务层 -->
+	<bean id="userServiceServImpl" class="com.tarena.netctoss.biz.impl.UserServiceServImpl">
+		<property name="iuserServiceDao" ref="userServiceImpl"></property>
+	</bean>
+	
+	<!-- 角色业务层 -->
+	<bean id="roleServImpl" class="com.tarena.netctoss.biz.impl.RoleServImpl">
+		<property name="iroleDao" ref="roleDaoImpl"></property>
+	</bean>
+	<!-- 权限业务 -->
+	<bean id="rightServImpl" class="com.tarena.netctoss.biz.impl.RightServImpl">
+		<property name="irightDao" ref="rightDaoImpl"></property>
+	</bean>
+	<!--系统模块  -->
+	<bean id="systemModuleServImpl" class="com.tarena.netctoss.biz.impl.SystemModuleServImpl">
+		<property name="isystemModuleDao" ref="systemModuleDaoImpl"></property>
+	</bean>
+	
+</beans>

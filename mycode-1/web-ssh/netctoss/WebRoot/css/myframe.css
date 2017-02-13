@@ -1,0 +1,24 @@
+BODY
+{
+	SCROLLBAR-HIGHLIGHT-COLOR:buttonface;
+	SCROLLBAR-SHADOW-COLOR:buttonface;
+	SCROLLBAR-3DLIGHT-COLOR:buttonhighlight;
+	SCROLLBAR-TRACK-COLOR:eeeeee;
+	SCROLLBAR-DARKSHADOW-COLOR:buttonshadow;
+	margin:0;
+	padding:0;
+}
+
+A:link{color:#1176D0;text-decoration:none; font-size:14px} 
+A:visited{ color:#30F;text-decoration:none;} 
+A:hover{ color:#AA00AA;text-decoration:none;}
+
+A
+{
+	color:Black;
+	font-family:ËÎÌו;
+	font-size:30px;
+	text-decoration:none;
+}
+
+

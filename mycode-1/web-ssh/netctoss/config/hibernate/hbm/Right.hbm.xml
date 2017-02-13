@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tarena.netctoss.entity">
+
+	<class name="Right" table="t_right">
+		<id name="rightId" column="right_id">
+			<generator class="native" />
+		</id>
+
+		<property name="rightName" column="right_name" length="20" />
+		<property name="url" column="url" length="100" />
+
+		<many-to-one name="systemModule" column="system_module_id" />
+
+		<set name="roles" table="t_role_right" inverse="true" lazy="false">
+			<key column="right_id" />
+			<many-to-many class="com.tarena.netctoss.entity.Role"
+				column="role_id"></many-to-many>
+		</set>
+
+	</class>
+</hibernate-mapping>    

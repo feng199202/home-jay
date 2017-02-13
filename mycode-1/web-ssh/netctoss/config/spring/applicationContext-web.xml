@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/aop 
+			http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx 
+			http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<!--普通用户 -->
+	<bean id="userAction" class="com.tarena.netctoss.web.action.UserAction">
+		<property name="iuserServ" ref="userServImpl"></property>
+		<property name="idetailServ" ref="detailServImpl"></property>
+
+	</bean>
+	<!-- 用户验证码 -->
+	<bean id="validateCodeAction" class="com.tarena.netctoss.web.action.ValidateCodeAction"></bean>
+	<!-- 管理员登陆 -->
+	<bean id="adminLoginAction" class="com.tarena.netctoss.web.action.AdminLoginAction">
+		<property name="iadminServ" ref="adminServImpl" />
+		<property name="irightServ" ref="rightServImpl" />
+		<property name="iroleServ" ref="roleServImpl" />
+		<property name="isystemModuleServ" ref="systemModuleServImpl" />
+
+	</bean>
+	<!-- 管理员退出登陆 -->
+	<bean id="adminLogoutAction" class="com.tarena.netctoss.web.action.AdminLogoutAction" />
+	<!-- 管理员退出登陆 -->
+	<bean id="userLogoutAction" class="com.tarena.netctoss.web.action.UserLogoutAction" />
+	<!-- 资费管理 -->
+	<bean id="magePricingAction" class="com.tarena.netctoss.web.action.AdminMagePricingAction">
+		<property name="ipricingServ" ref="pricingServImpl"></property>
+	</bean>
+
+	<!-- 帐务管理 -->
+	<bean id="manageAccountAction" class="com.tarena.netctoss.web.action.AdminManageAccountAction">
+		<property name="idetailServ" ref="detailServImpl"></property>
+
+	</bean>
+	<!-- 账单管理 -->
+	<bean id="manageReckonAction" class="com.tarena.netctoss.web.action.AdminManageReckonAction">
+
+		<property name="idetailServ" ref="detailServImpl"></property>
+
+	</bean>
+
+	<!-- 用户管理 -->
+	<bean id="manageUserAction" class="com.tarena.netctoss.web.action.AdminManageUserAction">
+		<property name="iuserServ" ref="userServImpl"></property>
+		<property name="iuserServiceServ" ref="userServiceServImpl"></property>
+		<property name="ipricingServ" ref="pricingServImpl"></property>
+	</bean>
+
+	<!-- 管理员管理 -->
+	<bean id="manageAdminAction" class="com.tarena.netctoss.web.action.ManageAdminAction">
+		<property name="iadminServ" ref="adminServImpl" />
+		<property name="iroleServ" ref="roleServImpl" />
+
+	</bean>
+
+	<!-- 权限管理 -->
+	<bean id="manageRoleRightAction"
+		class="com.tarena.netctoss.web.action.SuperAdminManageRoleRightAction">
+		<property name="irightServ" ref="rightServImpl">
+		</property>
+		<property name="isystemModuleServ" ref="systemModuleServImpl">
+		</property>
+		<property name="iroleServ" ref="roleServImpl">
+		</property>
+		<!-- <property name="iexistRightUrlServ" ref="existRightUrlServImpl"> </property> -->
+
+	</bean>
+</beans>

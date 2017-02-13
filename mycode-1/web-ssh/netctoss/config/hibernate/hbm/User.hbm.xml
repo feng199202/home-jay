@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.tarena.netctoss.entity">
+
+	<class name="User" table="t_user">
+		<id name="userId" column="user_id">
+			<generator class="native" />
+		</id>
+
+		<property name="realName" column="real_name" length="20"></property>
+		<property name="accountName" column="account_name" length="20"></property>
+		<property name="password" column="password" length="20"></property>
+		<property name="accountStatus" column="account_status"></property>
+		<property name="userPhone" column="user_phone" length="20"></property>
+		<property name="userEmail" column="user_email" length="20"></property>
+		<property name="enrollDate" column="enroll_date" type="date"></property>
+		<property name="paymentType" column="payment_type" length="20"></property>
+		<property name="career" length="20"></property>
+		<property name="nationnality" length="12"></property>
+		<property name="gender"></property>
+		<property name="company" length="20"></property>
+		<property name="zipCode" column="zip_code" length="8"></property>
+		<set name="services" inverse="true">
+			<key column="user_id" >
+			</key>
+			<one-to-many class="com.tarena.netctoss.entity.UserService"/>
+		</set>
+
+	</class>
+
+</hibernate-mapping>  

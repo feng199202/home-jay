@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/aop 
+			http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx 
+			http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<!-- spring读取properties文件 -->
+	<bean id="propertyPlaceholderConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:props/db.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- spring DBCP连接池 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${driverClassName}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${username}" />
+		<property name="password" value="${password}" />
+		<property name="initialSize" value="${initialSize}" />
+		<property name="maxActive" value="${maxActive}" />
+		<property name="maxIdle" value="${maxIdle}" />
+		<property name="minIdle" value="${minIdle}" />
+		<property name="maxWait" value="${maxWait}" />
+		<property name="removeAbandonedTimeout" value="${removeAbandonedTimeout}" />
+		<property name="removeAbandoned" value="${removeAbandoned}" />
+	</bean>
+
+	<!-- spring管理hibernate -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					${hibernate.dialect}
+				</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+			</props>
+		</property>
+		<property name="mappingLocations">
+			<list>
+				<value>classpath:hibernate/hbm/Admin.hbm.xml</value>
+				<value>classpath:hibernate/hbm/Detail.hbm.xml</value>
+				<value>classpath:hibernate/hbm/Pricing.hbm.xml</value>
+				<value>classpath:hibernate/hbm/Right.hbm.xml</value>
+				<value>classpath:hibernate/hbm/Role.hbm.xml</value>
+				<value>classpath:hibernate/hbm/SystemModule.hbm.xml</value>
+				<value>classpath:hibernate/hbm/User.hbm.xml</value>
+				<value>classpath:hibernate/hbm/UserService.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- spring事务管理器 -->
+	<bean id="hibernateTransactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- 定义通知 -->
+	<tx:advice id="tranAdvice" transaction-manager="hibernateTransactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="find*" read-only="true" />
+			<tx:method name="list*" read-only="true" />
+			<tx:method name="count*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- 通知织入切面 -->
+	<aop:config>
+		<!-- 定义切入点 -->
+		<!-- 在测试的时候,请改为dao 层 -->
+		<aop:pointcut expression="execution(* com.tarena.netctoss.biz.*.*(..))"
+			id="tranPointCut" />
+		<!-- 织入 -->
+		<aop:advisor advice-ref="tranAdvice" pointcut-ref="tranPointCut" />
+	</aop:config>
+
+	<import resource="applicationContext-dao.xml" />
+	<import resource="applicationContext-biz.xml" />
+	<import resource="applicationContext-web.xml" />
+
+</beans>

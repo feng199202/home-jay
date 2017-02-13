@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	
+	<package name="/pricing-default" extends="netctoss-default" namespace="/pricing">
+		<default-action-ref name="validateCodeAction" ></default-action-ref>
+		<action name="magePricingAction" class="magePricingAction">
+			<result name="success" type="dispatcher">
+				/WEB-INF/jsp/fee/index.jsp
+			</result>
+			<result name="fee_add" type="dispatcher">
+				/WEB-INF/jsp/fee/feeadd.jsp
+			</result>
+			<result name="fee_browse" type="dispatcher">
+				/WEB-INF/jsp/fee/feebrowse.jsp
+			</result>
+			<result name="fee_for_up" type="dispatcher">
+				/WEB-INF/jsp/fee/feebrforupd.jsp
+			</result>
+			<result name="fee_to_up" type="dispatcher">
+				/WEB-INF/jsp/fee/feeupdate.jsp
+			</result>
+			<result name="fee_del" type="dispatcher">
+				/WEB-INF/jsp/fee/feebrfordel.jsp
+			</result>
+			</action>
+	</package>
+	
+</struts>

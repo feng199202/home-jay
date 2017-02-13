@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="com.tarena.netctoss.entity">
+	<class name="Pricing" table="t_pricing">
+		<id name="pricingId" column="pricing_id">
+			<generator class="native"/>
+		</id>
+		
+		<property name="pricingName" column="pricing_name" length="20"></property>
+		
+		<property name="baseFee" column="base_fee"></property>
+		
+		<property name="rateFee" column="rate_fee"></property>
+		
+		<property name="description" length="50"></property>
+		
+		<set name="services" inverse="true">
+			<key>
+				<column name="pricing_id"></column>
+			</key>
+			<one-to-many class="com.tarena.netctoss.entity.UserService" />
+		</set>
+	</class>
+</hibernate-mapping>  

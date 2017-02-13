@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/aop 
+			http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx 
+			http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<!-- 用户dao -->
+	<bean id="userDaoImpl" class="com.tarena.netctoss.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>		
+	
+	<!-- 管理员dao -->
+	<bean id="adminDaoImpl" class="com.tarena.netctoss.dao.impl.AdminDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>		
+	
+	<!-- 角色dao -->
+	<bean id="roleDaoImpl" class="com.tarena.netctoss.dao.impl.RoleDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>		
+	<!--  -->
+	<bean id="detailDaoImpl" class="com.tarena.netctoss.dao.impl.DetailDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>	
+	
+	<bean id="pricingDaoImpl" class="com.tarena.netctoss.dao.impl.PricingDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>		
+	<bean id="userServiceImpl" class="com.tarena.netctoss.dao.impl.UserServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>		
+	<!-- 权限dao -->
+	<bean id="rightDaoImpl" class="com.tarena.netctoss.dao.impl.RightDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>		
+	<!-- 系统模块dao -->
+	<bean id="systemModuleDaoImpl" class="com.tarena.netctoss.dao.impl.SystemModuleImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>		
+	
+	
+</beans>
